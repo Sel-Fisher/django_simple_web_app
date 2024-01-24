@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vacancies List</title>
+</head>
+<body>
+  <h1>Vacancies</h1>
+  {% if vacancies %}
+  <ul>
+    {% for vacancy in vacancies %}
+        <li>
+            <p>{{ vacancy.name }} in {{ vacancy.company_name }} for {{ vacancy.salary }}$</p>
+            {% if vacancy.technologies_required.all %}
+                Technologies required for this job:
+                <ul>
+                    {% for technology in vacancy.technologies_required.all %}
+                        <li>{{ technology.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No technologies required for this job.</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+  {% else %}
+    <p>There is no Vacancies!</p>
+  {% endif %}
+</body>
+</html>
